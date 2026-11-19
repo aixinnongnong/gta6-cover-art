@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA-style cover art maker</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>Neon Coast <span>Cover Studio</span></h1>
+  <p>Your photos + a caption, turned into a GTA-style multi-panel poster. Everything runs offline in this page — no uploads, no watermark.</p>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <div class="group">
+      <h2>1 · Photos</h2>
+      <label class="file">Load your photos
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <div class="row">
+        <button id="sampleSkyline" type="button">Try Skyline sample</button>
+        <button id="sampleBeach" type="button">Try Beach sample</button>
+      </div>
+      <p class="note">Photos stay on your machine. Drag a panel to reposition it, scroll over it to zoom, click it to select it.</p>
+    </div>
+    <div class="group">
+      <h2>2 · Layout</h2>
+      <div class="picker" id="layoutRow">
+        <button type="button" data-value="hero3" class="active">Hero + Three</button>
+        <button type="button" data-value="grid4">Four Panel</button>
+        <button type="button" data-value="fullbleed">Full Bleed</button>
+        <button type="button" data-value="grid9">Nine Panel</button>
+        <button type="button" data-value="tilt">Tilted Snapshots</button>
+      </div>
+    </div>
+    <div class="group">
+      <h2>3 · Grade</h2>
+      <div class="picker" id="gradeRow">
+        <button type="button" data-value="vice" class="active" style="--sw:#ff7a3d">Vice Sunset</button>
+        <button type="button" data-value="neon" style="--sw:#37e0ff">Neon Nights</button>
+        <button type="button" data-value="gold" style="--sw:#ffc46b">Golden Hour</button>
+        <button type="button" data-value="noir" style="--sw:#ff5e8a">Noir Pink</button>
+        <button type="button" data-value="teal" style="--sw:#2fe8d8">Ocean Drive</button>
+      </div>
+    </div>
+    <div class="group">
+      <h2>4 · Words</h2>
+      <label>Caption <input id="caption" type="text" maxlength="40" value="Sunset Heist"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="40" value="Neon Coast"></label>
+      <label>Badge <input id="badge" type="text" maxlength="16" value="Vol. VI"></label>
+    </div>
+    <div class="group">
+      <h2>5 · Selected panel</h2>
+      <p class="note" id="panelLabel">Panel 1 of 4</p>
+      <label>Photo in this panel
+        <select id="panelPhoto"></select>
+      </label>
+      <label>Zoom <span id="panelZoomVal">1.00x</span>
+        <input id="panelZoom" type="range" min="1" max="3.5" step="0.05" value="1">
+      </label>
+      <div class="row">
+        <button id="panelReset" type="button">Reset crop</button>
+        <button id="panelFillAll" type="button">Fill all panels</button>
+      </div>
+    </div>
+    <div class="group">
+      <h2>6 · Export</h2>
+      <div class="picker" id="sizeRow">
+        <button type="button" data-value="square" class="active">Square</button>
+        <button type="button" data-value="story">Story</button>
+        <button type="button" data-value="wide">Wide</button>
+      </div>
+      <div class="row export-row">
+        <button id="exportSquare" type="button">PNG 1080 × 1080</button>
+        <button id="exportStory" type="button">PNG 1080 × 1350</button>
+        <button id="exportWide" type="button">PNG 1920 × 1080</button>
+      </div>
+      <button id="exportAll" type="button" class="primary">Export all three sizes</button>
+      <p id="status" role="status"></p>
+    </div>
+  </section>
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="The cover preview"></canvas>
+    <p class="hint">Live preview — what you see is the PNG you export.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
